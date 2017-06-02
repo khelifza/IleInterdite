@@ -36,7 +36,7 @@ public class Grille {
                     || i == 5 && j == 5 //coin inferieur droit
                    )
                 {
-                    this.tuiles = null; // les tuiles correspondant 
+                    this.tuiles = null; // les tuiles correspondant aux coins seront grisées
                 }
                 else {
                     Tuile tuiles = new Tuile(i,j);
