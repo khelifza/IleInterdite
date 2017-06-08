@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele;
+package Controleur;
 
 /**
  *
  * @author khelifza
  */
-public class Messager extends Aventurier{
-
-    
-    //Cosntructeur
-    public Messager(String nom, Grille grille) {
-        super(nom, grille);
-    }
-    
-    
+public class Main {
     
 }

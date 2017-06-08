@@ -21,10 +21,10 @@ public class Grille {
         
         this.tuiles = new Tuile [6] [6]; //tableau double entree de tuiles et de colonnes
         
-        for (int i = 0; i < tuiles.length; i++) {
-            int colonne [] = new int [6];
-            for (int j = 0; j < colonne.length; j++) {
-                if(    i == 0 && j == 0
+        for (int i = 0; i < 6; i++) {
+           
+            for (int j = 0; j < 6; j++) {
+                if( i == 0 && j == 0
                     || i == 0 && j == 1
                     || i == 1 && j == 0 // coin superieur gauche
                     || i == 0 && j == 4
@@ -37,11 +37,13 @@ public class Grille {
                     || i == 5 && j == 4
                     || i == 5 && j == 5 //coin inferieur droit
                    )
-                {
-                    this.tuiles = null; // les tuiles correspondant aux coins seront grisées et inutilisables
+                { 
+                   Tuile t = new Tuile(i,j);
+                    tuiles [i] [j] = null; // les tuiles correspondant aux coins seront grisées et inutilisables
                 }
                 else {
-                    Tuile tuiles = new Tuile(i,j); //construction de tuiles la ou c'est possible
+                    Tuile t = new Tuile(i,j);
+                    tuiles [i] [j] = t;         //construction de tuiles la ou c'est possible
                 }
             }
         }
@@ -110,11 +112,7 @@ public class Grille {
     public HashMap<Integer,Tuile> listeTuilesVoisinesHBGD(Tuile tuiles){
         
         /*
-        liste clé : 
-        HAUT =  1
-        BAS = 2
-        GAUCHE = 3
-        DROITE = 4
+        liste clé : HAUT = 1, BAS = 2, GAUCHE = 3, DROITE = 4
         */ 
         int ligne = tuiles.getLigne();
         int colonne = tuiles.getColonne();
@@ -126,7 +124,7 @@ public class Grille {
         }
         //aller en bas la cle sera 2
         if (getTuiles()[ligne + 1] [colonne] != null){
-            listeTuilesHBGD.put(2, getTuiles()[ligne - 1][colonne]);
+            listeTuilesHBGD.put(2, getTuiles()[ligne + 1][colonne]);
         }
         //aller a gauche la cle sera 3
         if (getTuiles()[ligne] [colonne - 1] != null){
@@ -165,11 +163,11 @@ public class Grille {
         }
         // bas droite
         if (getTuiles()[ligne-1] [colonne + 1] != null){
-            listeTuilesDiag.put(3, getTuiles()[ligne][colonne - 1]);
+            listeTuilesDiag.put(3, getTuiles()[ligne+1][colonne - 1]);
         }
         // bas gauche
         if (getTuiles()[ligne-1] [colonne-1] != null){
-            listeTuilesDiag.put(4, getTuiles()[ligne][colonne + 1]);
+            listeTuilesDiag.put(4, getTuiles()[ligne+1][colonne + 1]);
         }
         
         return listeTuilesDiag;
@@ -258,6 +256,9 @@ public class Grille {
         return tuiles;
     }
     
+    public Tuile getTuile(int a, int b) {
+        return this.tuiles[a][b];
+    }
     //setters
     
     public void setTuiles(Tuile[][] tuiles) {

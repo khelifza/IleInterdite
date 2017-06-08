@@ -9,14 +9,10 @@ package Modele;
  *
  * @author khelifza
  */
-public class Messager extends Aventurier{
-
+public enum EtatTuile {
     
-    //Cosntructeur
-    public Messager(String nom, Grille grille) {
-        super(nom, grille);
-    }
-    
-    
-    
+    seche,
+    innondée,
+    coulée
+    ,nulle;
 }

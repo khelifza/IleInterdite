@@ -11,10 +11,9 @@ package Modele;
  */
 public class Ingenieur extends Aventurier{
 
-    //Constructeur
-    public Ingenieur() {
+    public Ingenieur(String nom, Grille grille) {
+        super(nom,grille);
     }
-    
     
     
 }

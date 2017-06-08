@@ -6,7 +6,7 @@
 package ileinterdite;
 
 
-package util;
+package ileinterdite.Utils;
 
 import java.awt.Color;
 
