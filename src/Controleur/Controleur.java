@@ -7,6 +7,7 @@ package Controleur;
 
 import Modele.Aventurier;
 import Modele.Grille;
+import Modele.Ingenieur;
 import Modele.Tuile;
 import java.util.Scanner;
 //import Modele.
@@ -32,7 +33,7 @@ public class Controleur {
         Grille grille = new Grille();
         
         //ajout des Aventuriers
-        Aventurier aventurier1 = new Aventurier("zak", grille);
+        Aventurier aventurier1 = new Ingenieur("zak", grille);
         
     }
     

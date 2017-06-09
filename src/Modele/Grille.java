@@ -134,7 +134,7 @@ public class Grille {
         if (getTuiles()[ligne] [colonne+ 1] != null){
             listeTuilesHBGD.put(4, getTuiles()[ligne][colonne + 1]);
         }
-        
+        listeTuilesHBGD.put(9,getTuiles()[ligne][colonne]);
         return listeTuilesHBGD;
     }
     

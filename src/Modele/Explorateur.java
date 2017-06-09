@@ -38,6 +38,7 @@ public class Explorateur extends Aventurier{
         return listerendue;
     }
 
+    //redefinie aussi
     @Override
     public void deplacerAventurier() {
         
@@ -49,6 +50,13 @@ public class Explorateur extends Aventurier{
         getPositionAventurier().retirerAventurier(this);
         setPositionAventurier(choisie);
     }
+
+    //redifine pour assecher en diagonale
+    @Override
+    public HashMap<Integer, Tuile> listeTuilesPossiblesAssechement() {
+        
+    }
+    
     
     
 }

@@ -44,7 +44,7 @@ public abstract class Aventurier {
                 listerendue.put(cle, listetuilesHBGD.get(cle));//alors on les ajoute aux tuiles possibles
             }
         }
-        
+        listerendue.remove(9,listetuilesHBGD.get(9));
         return listerendue;
         
     }
@@ -58,11 +58,11 @@ public abstract class Aventurier {
         //parcours des tuiles adjacentes
         for (Integer cle: listetuilesHBGD.keySet()) {
             //si elles ne sont pas coulees
-            if(listetuilesHBGD.get(cle).getEtatTuiles() != EtatTuile.coulée && listetuilesHBGD.get(cle).getEtatTuiles() != EtatTuile.seche){
+            if(listetuilesHBGD.get(cle).getEtatTuiles() == EtatTuile.innondée){
                 listerendue.put(cle, listetuilesHBGD.get(cle));//alors on les ajoute aux tuiles possibles
             }
         }
-        listerendue.put(9, getPositionAventurier());
+        
         return listerendue;
         
     }
@@ -86,7 +86,7 @@ public abstract class Aventurier {
         HashMap<Integer, Tuile> assechement_potentiel = new HashMap<>();
         assechement_potentiel = listeTuilesPossiblesAssechement();
         Tuile choisie = new Tuile();
-        choisie = choixDirection();
+        choisie = choixDirectionAssechement();
         choisie.setEtatTuiles(EtatTuile.seche);
     }
 
@@ -127,6 +127,42 @@ public abstract class Aventurier {
         return listeTuilesPossibles().get(choix);
     }
 
+    //choix direction d'assechement
+    public Tuile choixDirectionAssechement(){
+        //scanner qui permet de choisir les joueurs
+        
+        int choix =0;//represente le choix
+        int numerochoixissuliste = 1;
+        System.out.print("Les tuiles disponibles sont :");
+        
+        for (Integer cle : listeTuilesPossiblesAssechement().keySet()) {
+            System.out.print("choix numero :");
+            System.out.print(String.valueOf(cle));
+            System.out.println(listeTuilesPossiblesAssechement().get(cle).getCoordonnees());
+        }
+        
+        System.out.println("faites votre choix en tapant le numero");
+        
+        
+        
+        Tuile tuilerendue = null;
+        boolean choixvalide = false;//conditionne la sortie de boucle
+
+        //tant que le choix n'est pas validé loop
+        while (choixvalide != true) {
+            Scanner scanner = new Scanner(System.in);
+            choix = scanner.nextInt();
+            
+            if(listeTuilesPossiblesAssechement().containsKey(choix)){
+                choixvalide = true;
+                System.out.print("tuile acceptée" );
+            }
+            else{
+                System.out.println("tuile invalide veuillez recommencer");
+            }
+        }
+        return listeTuilesPossiblesAssechement().get(choix);
+    }
     //getters
 
     public String getNom() {
