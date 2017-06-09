@@ -142,11 +142,7 @@ public class Grille {
     public HashMap<Integer,Tuile> listeTuilesDiagonales(Tuile tuiles){
         
         /*
-        liste clé : 
-        HAUT-GAUCHE = 5
-        HAUT-DROITE = 6
-        BAS-GAUCHE = 7
-        BAS-DROITE = 8
+        liste clé : HAUT-GAUCHE = 5, HAUT-DROITE = 6, BAS-GAUCHE = 7, BAS-DROITE = 8
         */
         
         int ligne = tuiles.getLigne();
@@ -154,25 +150,68 @@ public class Grille {
         HashMap<Integer,Tuile> listeTuilesDiag = new HashMap<Integer, Tuile>();
         
         // haut gauche
-        if (getTuiles()[ligne] [colonne] != null){
+        if (getTuiles()[ligne-1] [colonne-1] != null){
             listeTuilesDiag.put(5, getTuiles()[ligne-1][colonne-1]);
         }
         // haut droite
-        if (getTuiles()[ligne + 1] [colonne] != null){
-            listeTuilesDiag.put(2, getTuiles()[ligne-1][colonne+1]);
-        }
-        // bas droite
-        if (getTuiles()[ligne-1] [colonne + 1] != null){
-            listeTuilesDiag.put(3, getTuiles()[ligne+1][colonne - 1]);
+        if (getTuiles()[ligne -1] [colonne +1] != null){
+            listeTuilesDiag.put(6, getTuiles()[ligne-1][colonne+1]);
         }
         // bas gauche
-        if (getTuiles()[ligne-1] [colonne-1] != null){
-            listeTuilesDiag.put(4, getTuiles()[ligne+1][colonne + 1]);
+        if (getTuiles()[ligne+1] [colonne-1] != null){
+            listeTuilesDiag.put(7, getTuiles()[ligne+1][colonne - 1]);
+        }
+        // bas droite
+        if (getTuiles()[ligne+1] [colonne+1] != null){
+            listeTuilesDiag.put(8, getTuiles()[ligne+1][colonne + 1]);
         }
         
         return listeTuilesDiag;
     }
     
+    //rend la liste des tuiles adjacentes et en diagonales
+    public HashMap<Integer, Tuile> listeTuilesHGBDandDiagonales(Tuile tuiles){
+        /*
+        liste clé : HAUT = 1, BAS = 2, GAUCHE = 3, DROITE = 4
+        */ 
+        int ligne = tuiles.getLigne();
+        int colonne = tuiles.getColonne();
+        HashMap<Integer,Tuile> listeTuilesHBGDandDiag = new HashMap<Integer, Tuile>();
+        
+        //en haut la clé sera 1
+        if (getTuiles()[ligne - 1] [colonne] != null){
+            listeTuilesHBGDandDiag.put(1, getTuiles()[ligne - 1][colonne]);
+        }
+        //aller en bas la cle sera 2
+        if (getTuiles()[ligne + 1] [colonne] != null){
+            listeTuilesHBGDandDiag.put(2, getTuiles()[ligne + 1][colonne]);
+        }
+        //aller a gauche la cle sera 3
+        if (getTuiles()[ligne] [colonne - 1] != null){
+            listeTuilesHBGDandDiag.put(3, getTuiles()[ligne][colonne - 1]);
+        }
+        //aller a droite la cle sera 4
+        if (getTuiles()[ligne] [colonne+ 1] != null){
+            listeTuilesHBGDandDiag.put(4, getTuiles()[ligne][colonne + 1]);
+        }
+        // haut gauche
+        if (getTuiles()[ligne-1] [colonne-1] != null){
+            listeTuilesHBGDandDiag.put(5, getTuiles()[ligne-1][colonne-1]);
+        }
+        // haut droite
+        if (getTuiles()[ligne - 1] [colonne+1] != null){
+            listeTuilesHBGDandDiag.put(6, getTuiles()[ligne-1][colonne+1]);
+        }
+        // bas gauche
+        if (getTuiles()[ligne+1] [colonne - 1] != null){
+            listeTuilesHBGDandDiag.put(7, getTuiles()[ligne+1][colonne - 1]);
+        }
+        // bas droite
+        if (getTuiles()[ligne+1] [colonne+1] != null){
+            listeTuilesHBGDandDiag.put(8, getTuiles()[ligne+1][colonne + 1]);
+        }
+        return listeTuilesHBGDandDiag;
+    }
     //rend la liste des tuiles diagonales si elles existent
     public HashMap<Integer,Tuile> listeTuilesInnondeesDiagonales(Tuile tuiles){
         

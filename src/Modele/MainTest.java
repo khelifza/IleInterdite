@@ -20,9 +20,9 @@ public class MainTest {
         
         Grille grille = new Grille();
         
-        Aventurier zak = new Aventurier("zak", grille);
+        Aventurier zak = new Messager("zak", grille);
         
-        zak.setPositionAventurier(grille.getTuile(2, 3));
+        zak.setPositionAventurier(grille.getTuile(2, 1));
         
         
         zak.deplacerAventurier();
@@ -30,11 +30,19 @@ public class MainTest {
         System.out.println("new coo");
         System.out.println(zak.getPositionAventurier().getCoordonnees());
         
-        zak.deplacerAventurier();
+        
         System.out.println("yo");
         grille.getTuile(2, 3).yaQui();
         System.out.println("yo2");
         zak.getPositionAventurier().yaQui();
+        System.out.println(zak.getPositionAventurier().getCoordonnees());
+        
+        zak.assecherTuile();
+        System.out.println("etat apres assechement");
+        System.out.println(grille.getTuile(3, 1).getEtatTuiles().toString());
+        System.out.println("exemple2");
+        System.out.println(grille.getTuile(0, 3).getEtatTuiles().toString());
+        
     }
     
 }

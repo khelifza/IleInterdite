@@ -49,6 +49,23 @@ public abstract class Aventurier {
         
     }
     
+    public HashMap<Integer,Tuile> listeTuilesPossiblesAssechement (){
+        
+        HashMap<Integer,Tuile> listetuilesHBGD = new HashMap<>();//collection des tuiles adjacentes
+        listetuilesHBGD = grille.listeTuilesVoisinesHBGD(positionAventurier);//stockage de cette collection dans une variable
+        HashMap<Integer,Tuile> listerendue = new HashMap<>();//liste rendue par le methode
+        
+        //parcours des tuiles adjacentes
+        for (Integer cle: listetuilesHBGD.keySet()) {
+            //si elles ne sont pas coulees
+            if(listetuilesHBGD.get(cle).getEtatTuiles() != EtatTuile.coulée && listetuilesHBGD.get(cle).getEtatTuiles() != EtatTuile.seche){
+                listerendue.put(cle, listetuilesHBGD.get(cle));//alors on les ajoute aux tuiles possibles
+            }
+        }
+        listerendue.put(9, getPositionAventurier());
+        return listerendue;
+        
+    }
     
     //methode de depacement de l'aventurier
     public void deplacerAventurier() {
@@ -63,8 +80,17 @@ public abstract class Aventurier {
         
         
     }
+    
+    public void assecherTuile(){
+        
+        HashMap<Integer, Tuile> assechement_potentiel = new HashMap<>();
+        assechement_potentiel = listeTuilesPossiblesAssechement();
+        Tuile choisie = new Tuile();
+        choisie = choixDirection();
+        choisie.setEtatTuiles(EtatTuile.seche);
+    }
 
-    //methode permettant de choisir la direction de deplacement
+    //methode permettant de choisir la direction de deplacement et d'assechement
     public Tuile choixDirection() {
         //scanner qui permet de choisir les joueurs
         
@@ -92,10 +118,10 @@ public abstract class Aventurier {
             
             if(listeTuilesPossibles().containsKey(choix)){
                 choixvalide = true;
-                System.out.print("deplacement accepté" );
+                System.out.print("tuile acceptée" );
             }
             else{
-                System.out.println("deplacement invalide veuillez recommencer");
+                System.out.println("tuile invalide veuillez recommencer");
             }
         }
         return listeTuilesPossibles().get(choix);
@@ -107,10 +133,15 @@ public abstract class Aventurier {
         return nom;
     }
     
-    
     public Tuile getPositionAventurier() {
         return positionAventurier;
     }
+
+    public Grille getGrille() {
+        return grille;
+    }
+    
+    
 
     //setters
 
@@ -122,4 +153,10 @@ public abstract class Aventurier {
     public void setPositionAventurier(Tuile position) {
         this.positionAventurier = position;
     }
+
+    public void setGrille(Grille grille) {
+        this.grille = grille;
+    }
+       
 }
+

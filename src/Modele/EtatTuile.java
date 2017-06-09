@@ -13,6 +13,5 @@ public enum EtatTuile {
     
     seche,
     innondée,
-    coulée
-    ,nulle;
+    coulée;
 }

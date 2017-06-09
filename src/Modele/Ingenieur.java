@@ -5,6 +5,8 @@
  */
 package Modele;
 
+import java.util.HashMap;
+
 /**
  *
  * @author khelifza
@@ -14,6 +16,9 @@ public class Ingenieur extends Aventurier{
     public Ingenieur(String nom, Grille grille) {
         super(nom,grille);
     }
+
+    
+    
     
     
 }

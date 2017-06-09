@@ -16,7 +16,4 @@ public class Messager extends Aventurier{
     public Messager(String nom, Grille grille) {
         super(nom, grille);
     }
-    
-    
-    
 }
